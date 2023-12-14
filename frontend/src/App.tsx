@@ -1,5 +1,5 @@
 import { Amplify, Auth } from "aws-amplify";
-import { withAuthenticator } from "@aws-amplify/ui-react";
+//import { withAuthenticator } from "@aws-amplify/ui-react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Layout from "./routes/layout";
@@ -12,7 +12,7 @@ Amplify.configure({
     userPoolWebClientId: import.meta.env.VITE_USER_POOL_CLIENT_ID,
     region: import.meta.env.VITE_API_REGION,
     oauth: {
-      domain: "https://pvinton-sandbox.auth.us-east-1.amazoncognito.com",
+      domain: "pvinton-sandbox.auth.us-east-1.amazoncognito.com",
       scope: ["email", "openid", "aws.cognito.signin.user.admin", "profile"],
       redirectSignIn: "https://main.d29s4hlgft4djr.amplifyapp.com/",
       redirectSignOut: "https://main.d29s4hlgft4djr.amplifyapp.com/",
@@ -58,4 +58,5 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default withAuthenticator(App, { hideSignUp: true });
+//export default withAuthenticator(App, { hideSignUp: true });
+export default App
