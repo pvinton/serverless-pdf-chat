@@ -1,5 +1,5 @@
 import { Amplify, Auth } from "aws-amplify";
-//import { withAuthenticator } from "@aws-amplify/ui-react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Layout from "./routes/layout";
