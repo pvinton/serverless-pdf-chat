@@ -1,10 +1,10 @@
-import { Amplify, Auth } from "aws-amplify";
-// import { withAuthenticator } from "@aws-amplify/ui-react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import Layout from "./routes/layout";
-import Documents from "./routes/documents";
-import Chat from "./routes/chat";
+import { Amplify, Auth } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import Layout from "./routes/layout";
+// import Documents from "./routes/documents";
+// import Chat from "./routes/chat";
 
 Amplify.configure({
   Auth: {
@@ -37,29 +37,43 @@ Amplify.configure({
   },
 });
 
-let router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        index: true,
-        Component: Documents,
-      },
-      {
-        path: "/doc/:documentid/:conversationid",
-        Component: Chat,
-      },
-    ],
-  },
-]);
+// let router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Layout />,
+//     children: [
+//       {
+//         index: true,
+//         Component: Documents,
+//       },
+//       {
+//         path: "/doc/:documentid/:conversationid",
+//         Component: Chat,
+//       },
+//     ],
+//   },
+// ]);
 
-function App() {
-  return <RouterProvider router={router} />;
+function checkUser() {
+  Auth.currentAuthenticatedUser()
+    .then(user => console.log({ user }))
+    .catch(err => console.log(err))
 }
 
-// export default withAuthenticator(App, { 
-//   hideSignUp: true,
-//   socialProviders: ['apple']
-// });
-export default App
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <button onClick={checkUser}>Check User</button>
+        <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
+      </header>
+    </div>
+    // <RouterProvider router={router} />;
+  )
+}
+
+export default withAuthenticator(App, { 
+  hideSignUp: true,
+  socialProviders: ['apple']
+});
+//export default App
