@@ -58,5 +58,8 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-//export default withAuthenticator(App, { hideSignUp: true });
-export default App
+export default withAuthenticator(App, { 
+  hideSignUp: true,
+  socialProviders: ['apple']
+});
+//export default App
