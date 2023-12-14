@@ -1,5 +1,5 @@
 import { Amplify, Auth } from "aws-amplify";
-import { withAuthenticator } from "@aws-amplify/ui-react";
+// import { withAuthenticator } from "@aws-amplify/ui-react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Layout from "./routes/layout";
@@ -58,8 +58,8 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default withAuthenticator(App, { 
-  hideSignUp: true,
-  socialProviders: ['apple']
-});
-//export default App
+// export default withAuthenticator(App, { 
+//   hideSignUp: true,
+//   socialProviders: ['apple']
+// });
+export default App
