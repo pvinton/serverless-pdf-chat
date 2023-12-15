@@ -70,7 +70,9 @@ const openSaml = () => {
 
 const signIn = async () => {
   try {
-    await Auth.federatedSignIn({ provider: "Azure" });
+    console.log('before federatedSignin')
+    await Auth.federatedSignIn();
+    console.log('after federatedSignin')
   } catch (error) {
     console.log("error signing in", error);
   }
@@ -80,11 +82,13 @@ function App() {
   const [user, setUser] = useState(null);
 
   Hub.listen('auth', (data) => {
+    console.log('got auth event')
     const { payload } = data
     console.log(payload)
   })
 
   useEffect(() => {
+    console.log('in useEffect')
     getUser().then((userData) => setUser(userData));
   }, []);
 
