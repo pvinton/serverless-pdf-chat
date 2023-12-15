@@ -65,7 +65,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <button onClick={checkUser}>Check User</button>
-        <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
+        <button onClick={() => Auth.federatedSignIn({provider:'AzureAD'})}>Sign In</button>
       </header>
     </div>
     // <RouterProvider router={router} />;
