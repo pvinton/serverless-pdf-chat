@@ -103,7 +103,7 @@ function App() {
       <h1>
         Welcome{" "}
         {user
-          ? JSON.stringify(user.attributes.email)
+          ? JSON.stringify(user)
           : "Oops! Not signed in"}
       </h1>
       <header className="App-header">
