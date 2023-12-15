@@ -100,6 +100,12 @@ function App() {
 
   return (
     <div className="App">
+      <h1>
+        Welcome{" "}
+        {user
+          ? JSON.stringify(user.attributes.email)
+          : "Oops! Not signed in"}
+      </h1>
       <header className="App-header">
         <button onClick={checkUser}>Check User</button>
         <button onClick={() => Auth.federatedSignIn()}>Sign In 1</button>
