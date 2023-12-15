@@ -1,5 +1,5 @@
 import "./index.css";
-import { Amplify, Auth } from "aws-amplify";
+import { Amplify, Hub, Auth } from "aws-amplify";
 // import { withAuthenticator } from "@aws-amplify/ui-react";
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import Layout from "./routes/layout";
@@ -60,12 +60,23 @@ function checkUser() {
     .catch(err => console.log(err))
 }
 
+const openSaml = () => {
+  window.location.assign(
+    'https://pvinton-sandbox.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=3gpscd72mrd07hjba3gqmeci26&redirect_uri=https://main.d29s4hlgft4djr.amplifyapp.com'
+  );
+};
+
 function App() {
+  Hub.listen('auth', (data) => {
+    const { payload } = data
+    console.log(payload)
+}, [])
+
   return (
     <div className="App">
       <header className="App-header">
         <button onClick={checkUser}>Check User</button>
-        <button onClick={() => Auth.federatedSignIn({provider:'AzureAD'})}>Sign In</button>
+        <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
       </header>
     </div>
     // <RouterProvider router={router} />;
