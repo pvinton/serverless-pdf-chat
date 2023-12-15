@@ -70,7 +70,7 @@ function App() {
   Hub.listen('auth', (data) => {
     const { payload } = data
     console.log(payload)
-  }
+  })
 
   return (
     <div className="App">
