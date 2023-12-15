@@ -4,7 +4,7 @@ import App from "./App";
 import "@aws-amplify/ui-react/styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React>
+  <React.StrictMode>
     <App />
-  </React>
+  </React.StrictMode>
 );
