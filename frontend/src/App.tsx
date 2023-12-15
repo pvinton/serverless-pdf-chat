@@ -60,11 +60,11 @@ function checkUser() {
     .catch(err => console.log(err))
 }
 
-const openSaml = () => {
-  window.location.assign(
-    'https://pvinton-sandbox.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=3gpscd72mrd07hjba3gqmeci26&redirect_uri=https://main.d29s4hlgft4djr.amplifyapp.com'
-  );
-};
+// const openSaml = () => {
+//   window.location.assign(
+//     'https://pvinton-sandbox.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=3gpscd72mrd07hjba3gqmeci26&redirect_uri=https://main.d29s4hlgft4djr.amplifyapp.com'
+//   );
+// };
 
 function App() {
   Hub.listen('auth', (data) => {
