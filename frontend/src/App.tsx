@@ -1,5 +1,7 @@
 import "./index.css";
 import { Amplify, Hub, Auth } from "aws-amplify";
+import { useEffect, useState } from "react";
+
 // import { withAuthenticator } from "@aws-amplify/ui-react";
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import Layout from "./routes/layout";
@@ -60,23 +62,45 @@ function checkUser() {
     .catch(err => console.log(err))
 }
 
-// const openSaml = () => {
-//   window.location.assign(
-//     'https://pvinton-sandbox.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=3gpscd72mrd07hjba3gqmeci26&redirect_uri=https://main.d29s4hlgft4djr.amplifyapp.com'
-//   );
-// };
+const openSaml = () => {
+  window.location.assign(
+    'https://pvinton-sandbox.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=3gpscd72mrd07hjba3gqmeci26&redirect_uri=https://main.d29s4hlgft4djr.amplifyapp.com'
+  );
+};
+
+const signIn = async () => {
+  try {
+    await Auth.federatedSignIn({ provider: "Azure" });
+  } catch (error) {
+    console.log("error signing in", error);
+  }
+};
 
 function App() {
+  const [user, setUser] = useState(null);
+
   Hub.listen('auth', (data) => {
     const { payload } = data
     console.log(payload)
   })
 
+  useEffect(() => {
+    getUser().then((userData) => setUser(userData));
+  }, []);
+
+  function getUser() {
+    return Auth.currentAuthenticatedUser()
+      .then((userData) => userData)
+      .catch(() => console.log("Not signed in"));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <button onClick={checkUser}>Check User</button>
-        <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
+        <button onClick={() => Auth.federatedSignIn()}>Sign In 1</button>
+        <button onClick={openSaml}>Sign In 2</button>
+        <button onClick={signIn}>Sign In 3</button>
       </header>
     </div>
     // <RouterProvider router={router} />;
