@@ -79,43 +79,7 @@ let router = createBrowserRouter([
 // };
 
 function App() {
-  // const [user, setUser] = useState(null);
-
-  // Hub.listen('auth', (data) => {
-  //   console.log('got auth event')
-  //   const { payload } = data
-  //   console.log(payload)
-  // })
-
-  // useEffect(() => {
-  //   console.log('in useEffect')
-  //   getUser().then((userData) => setUser(userData));
-  // }, []);
-
-  // function getUser() {
-  //   console.log('getting current user')
-  //   return Auth.currentAuthenticatedUser()
-  //     .then((userData) => userData)
-  //     .catch((e) => console.log("Not signed in", e));
-  // }
-
-  return (
-    // <div className="App">
-    //   <h1>
-    //     Welcome{" "}
-    //     {user
-    //       ? JSON.stringify(user)
-    //       : "Oops! Not signed in"}
-    //   </h1>
-    //   <header className="App-header">
-    //     <button onClick={checkUser}>Check User</button>
-    //     <button onClick={() => Auth.federatedSignIn()}>Sign In 1</button>
-    //     <button onClick={openSaml}>Sign In 2</button>
-    //     <button onClick={signIn}>Sign In 3</button>
-    //   </header>
-    // </div>
-    <RouterProvider router={router} />;
-  )
+  return <RouterProvider router={router} />;
 }
 
 export default withAuthenticator(App, { 
